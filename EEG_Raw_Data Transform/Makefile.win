@@ -1,0 +1,31 @@
+# Project: 项目1
+# Makefile created by Dev-C++ 5.11
+
+CPP      = g++.exe
+CC       = gcc.exe
+WINDRES  = windres.exe
+OBJ      = Queue.o data_pre2_delete.o
+LINKOBJ  = Queue.o data_pre2_delete.o
+LIBS     = -L"E:/aaa学习/a数学 我就是要置顶/数据结构/DEVC++/Dev-Cpp/MinGW64/lib" -L"E:/aaa学习/a数学 我就是要置顶/数据结构/DEVC++/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc
+INCS     = -I"E:/aaa学习/a数学 我就是要置顶/数据结构/DEVC++/Dev-Cpp/MinGW64/include" -I"E:/aaa学习/a数学 我就是要置顶/数据结构/DEVC++/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include"
+CXXINCS  = -I"E:/aaa学习/a数学 我就是要置顶/数据结构/DEVC++/Dev-Cpp/MinGW64/include" -I"E:/aaa学习/a数学 我就是要置顶/数据结构/DEVC++/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include"
+BIN      = data_pre2_delete.exe
+CXXFLAGS = $(CXXINCS) 
+CFLAGS   = $(INCS) 
+RM       = rm.exe -f
+
+.PHONY: all all-before all-after clean clean-custom
+
+all: all-before $(BIN) all-after
+
+clean: clean-custom
+	${RM} $(OBJ) $(BIN)
+
+$(BIN): $(OBJ)
+	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
+
+Queue.o: Queue.cpp
+	$(CPP) -c Queue.cpp -o Queue.o $(CXXFLAGS)
+
+data_pre2_delete.o: data_pre2_delete.cpp
+	$(CPP) -c data_pre2_delete.cpp -o data_pre2_delete.o $(CXXFLAGS)

@@ -14,8 +14,6 @@ smile_cascade = cv2.CascadeClassifier('C:\\Users\Administrator\Desktop\openCV_ey
 
 
 #打开摄像头获取视频
-
-
 #size = (640,480)
 cap = cv2.VideoCapture(0)
 size =(int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)),
@@ -54,28 +52,18 @@ while(True):
         #检测视频中的人脸，并用vector保存人脸的坐标、大小（用矩形表示）
         #Rect(x,y,w,h)
        faces = face_cascade.detectMultiScale(gray, 1.3, 5)
-       
-            
+              
         #脸部检测
        for (x,y,w,h) in faces:
             cv2.rectangle(img,(x,y),(x+w,y+h),(255,0,0),2)
             roi_gray = gray[y:y+h, x:x+w]
             roi_color = img[y:y+h, x:x+w]
-
-
-
-
             smiles = smile_cascade.detectMultiScale(gray[int(y+h/2):y+h, x:x+w],4,5)  
-
-
-            
-            
-            
+        
         #检测视频中脸部的眼睛，并用vector保存眼睛的坐标、大小（用矩形表示）
 
             eyes = eyeglasses_cascade.detectMultiScale(roi_gray,1.3,2)
              #eyes = eyeglasses_cascade.detectMultiScale(roi_gray)
-        
 
             # print((time.time(),eyes,faces),file = eye_data)
             print(time.time(),file = time_data)
@@ -89,9 +77,7 @@ while(True):
             #笑脸检测
             for (sx,sy,sw,sh) in smiles:
                  cv2.rectangle(img[int(y+h/2):y+h, x:x+w],(sx,sy),(sx+sw,sy+sh),(0,0,255),2)
-                 
-                 
-             
+                          
             #眼睛检测
             for (ex,ey,ew,eh) in eyes:
                  cv2.rectangle(roi_color,(ex,ey),(ex+ew,ey+eh),(0,255,0),2)
